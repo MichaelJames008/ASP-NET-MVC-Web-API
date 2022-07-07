@@ -1,0 +1,145 @@
+﻿@model EmployeeWebAPI.ViewModels.EmployeeViewModel
+
+@{
+    ViewBag.Title = "List of Employees";
+}
+
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
+
+<link href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css" rel="stylesheet" />
+
+<br />
+<h3>List of Employees</h3>
+
+<div class="container bg-light">
+    <br />
+
+    @if (Model.Employees != null)
+    {
+
+    <div class="container" id="employeediv">
+        <table id="empoyeetable" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>NickName</th>
+                    <th>Age</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var e in Model.Employees)
+                    {
+
+                <tr>
+                    <td>@e.Id</td>
+                    <td>@e.Name</td>
+                    <td>@e.NickName</td>
+                    <td>@e.Age</td>
+
+                </tr>
+
+                    }
+
+            </tbody>
+
+
+        </table>
+
+    </div>
+    }
+
+</div>
+
+
+<br />
+
+<h3>List of Employees using Datatable</h3>
+
+<div class="container bg-light">
+    <br />
+
+    @if (Model.Employees != null)
+    {
+
+    <div class="container" id="employeedtdiv">
+        <table id="empoyeedatatable" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>NickName</th>
+                    <th>Age</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var e in Model.Employees)
+                    {
+
+                <tr>
+                    <td>@e.Id</td>
+                    <td>@e.Name</td>
+                    <td>@e.NickName</td>
+                    <td>@e.Age</td>
+
+                </tr>
+
+                    }
+
+            </tbody>
+
+
+        </table>
+
+    </div>
+    }
+
+</div>
+@section Scripts{
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+            integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+            crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+            var employees = $("#empoyeedatatable").DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel'
+                ],
+                "iDisplayLength": 30,
+                "columnDefs": [
+                    {
+                        "targets": [0],
+                        "visible": false,
+                        "searchable": false
+                    }]
+            });
+
+        })
+
+    </script>
+
+}
